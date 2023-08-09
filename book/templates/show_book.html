@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1 class="text-center mt-5">Here is the list of Books</h1>
+
+{% if data %}
+<div class="px-5">
+    <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">#ID</th>
+            <th scope="col">Book Name</th>
+            <th scope="col">Author Name</th>
+            <th scope="col">Category</th>
+            <th scope="col">First Publication</th>
+            <th scope="col">Last Publication</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for book in data %}
+          <tr>
+            <td>{{ book.id }}</td>
+            <td>{{ book.book_name }}</td>
+            <td>{{ book.author }}</td>
+            <td>{{ book.category }}</td>
+            <td>{{ book.first_pub }}</td>
+            <td>{{ book.last_pub }}</td>
+            <td>
+                <a href="{% url 'editbook' book.id %}" class="btn btn-sm btn-primary">Edit</a>
+                <a href="{% url 'deletebook' book.id %}" class="btn btn-sm btn-danger">Delete</a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+</div>
+{% endif %}
+{% endblock %}
